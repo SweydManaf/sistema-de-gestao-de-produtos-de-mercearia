@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="sistema-de-gestao-de-produtos-de-mecearia:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/sistema_de_gestao_de_produtos_de_mecearia_jar</output-path>
+    <root id="archive" name="sistema-de-gestao-de-produtos-de-mecearia.jar">
+      <element id="module-output" name="sistema-de-gestao-de-produtos-de-mecearia" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/mysql-connector-j-8.0.33.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
