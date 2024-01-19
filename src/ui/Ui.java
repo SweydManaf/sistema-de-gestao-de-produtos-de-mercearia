@@ -8,6 +8,11 @@ import controllers.ProductController;
 import entities.Product;
 
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +26,7 @@ public class Ui extends javax.swing.JFrame {
      * Creates new form Ui
      */
     public Ui() throws Exception {
+
         controller = new ProductController();
         initComponents();
         updateTable();
@@ -33,35 +39,35 @@ public class Ui extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() throws Exception {
 
         addProductPage = new javax.swing.JDialog();
         addProductPanel = new javax.swing.JPanel();
         productsTitlePage1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        productNameField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        priceProductField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        categoryProductField = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        expirationProductField = new javax.swing.JTextField();
+        addProductPageBtn = new javax.swing.JButton();
+        closeAddProductPageBtn = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         updateProductPage = new javax.swing.JDialog();
         updateProductPanel = new javax.swing.JPanel();
         productsTitlePage2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        nameUpdateField = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        priceUpdateField = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        categoryUpdateField = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        expirationUpdateField = new javax.swing.JTextField();
+        updateBtn = new javax.swing.JButton();
+        closeUpdatePageBtn = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         sidebar = new javax.swing.JPanel();
         logoName = new javax.swing.JLabel();
@@ -91,51 +97,56 @@ public class Ui extends javax.swing.JFrame {
         productsTitlePage1.setText("Adicionar Producto");
 
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        jLabel1.setText("Nome do producto");
+        jLabel1.setText("Nome do producto*");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        productNameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                productNameFieldActionPerformed(evt);
             }
         });
 
         jLabel6.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        jLabel6.setText("Preço do producto");
+        jLabel6.setText("Preço do producto*");
 
         jLabel7.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel7.setText("Categoria");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        categoryProductField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                categoryProductFieldActionPerformed(evt);
             }
         });
 
         jLabel8.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        jLabel8.setText("Prazo de validade");
+        jLabel8.setText("Prazo de validade*");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        expirationProductField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                expirationProductFieldActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 92, 0));
-        jButton2.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Adicionar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        addProductPageBtn.setBackground(new java.awt.Color(255, 92, 0));
+        addProductPageBtn.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        addProductPageBtn.setForeground(new java.awt.Color(255, 255, 255));
+        addProductPageBtn.setText("Adicionar");
+        addProductPageBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                try {
+                    addProductPageBtnActionPerformed(evt);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
-        jButton3.setText("Cancelar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        closeAddProductPageBtn.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        closeAddProductPageBtn.setText("Cancelar");
+        closeAddProductPageBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                closeAddProductPageBtnActionPerformed(evt);
             }
+
         });
 
         jLabel9.setFont(new java.awt.Font("Liberation Sans", 0, 10)); // NOI18N
@@ -149,9 +160,9 @@ public class Ui extends javax.swing.JFrame {
                 .addGroup(addProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(addProductPanelLayout.createSequentialGroup()
                         .addGap(51, 51, 51)
-                        .addComponent(jButton3)
+                        .addComponent(closeAddProductPageBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
+                        .addComponent(addProductPageBtn))
                     .addGroup(addProductPanelLayout.createSequentialGroup()
                         .addContainerGap(56, Short.MAX_VALUE)
                         .addGroup(addProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,11 +178,11 @@ public class Ui extends javax.swing.JFrame {
                                 .addGap(38, 38, 38)))
                         .addGap(22, 22, 22)
                         .addGroup(addProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(categoryProductField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(addProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(priceProductField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                                .addComponent(productNameField, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(expirationProductField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))))
                 .addGap(55, 55, 55))
             .addGroup(addProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,25 +197,25 @@ public class Ui extends javax.swing.JFrame {
                 .addGap(167, 167, 167)
                 .addGroup(addProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(productNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(addProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(priceProductField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(addProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(categoryProductField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(addProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(expirationProductField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addGroup(addProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(closeAddProductPageBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addProductPageBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(58, 58, 58))
             .addGroup(addProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(addProductPanelLayout.createSequentialGroup()
@@ -232,7 +243,7 @@ public class Ui extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel11.setText("Nome do producto");
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        nameUpdateField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
             }
@@ -244,7 +255,7 @@ public class Ui extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel13.setText("Categoria");
 
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        categoryUpdateField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField7ActionPerformed(evt);
             }
@@ -253,28 +264,40 @@ public class Ui extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel14.setText("Prazo de validade");
 
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        expirationUpdateField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(255, 92, 0));
-        jButton4.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Atualizar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        updateBtn.setBackground(new java.awt.Color(255, 92, 0));
+        updateBtn.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        updateBtn.setForeground(new java.awt.Color(255, 255, 255));
+        updateBtn.setText("Atualizar");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
+                try {
+                    updateProduct();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
-        jButton5.setText("Voltar");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        closeUpdatePageBtn.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        closeUpdatePageBtn.setText("Voltar");
+        closeUpdatePageBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
+                updateProductPage.dispose();
+                try {
+                    updateTable();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
+
         });
 
         jLabel15.setFont(new java.awt.Font("Liberation Sans", 0, 10)); // NOI18N
@@ -288,9 +311,9 @@ public class Ui extends javax.swing.JFrame {
                 .addGroup(updateProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(updateProductPanelLayout.createSequentialGroup()
                         .addGap(51, 51, 51)
-                        .addComponent(jButton5)
+                        .addComponent(closeUpdatePageBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4))
+                        .addComponent(updateBtn))
                     .addGroup(updateProductPanelLayout.createSequentialGroup()
                         .addContainerGap(58, Short.MAX_VALUE)
                         .addGroup(updateProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,11 +329,11 @@ public class Ui extends javax.swing.JFrame {
                                 .addGap(38, 38, 38)))
                         .addGap(22, 22, 22)
                         .addGroup(updateProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(categoryUpdateField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(updateProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(priceUpdateField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                                .addComponent(nameUpdateField, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(expirationUpdateField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15))))
                 .addGap(55, 55, 55))
             .addGroup(updateProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,25 +348,25 @@ public class Ui extends javax.swing.JFrame {
                 .addGap(167, 167, 167)
                 .addGroup(updateProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nameUpdateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(updateProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(priceUpdateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(updateProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(categoryUpdateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(updateProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(expirationUpdateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(updateProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(closeUpdatePageBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(58, 58, 58))
             .addGroup(updateProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(updateProductPanelLayout.createSequentialGroup()
@@ -354,6 +377,7 @@ public class Ui extends javax.swing.JFrame {
 
         javax.swing.GroupLayout updateProductPageLayout = new javax.swing.GroupLayout(updateProductPage.getContentPane());
         updateProductPage.getContentPane().setLayout(updateProductPageLayout);
+        updateProductPage.addWindowListener(new WindowEventHandler());
         updateProductPageLayout.setHorizontalGroup(
             updateProductPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(updateProductPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -364,7 +388,10 @@ public class Ui extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(248, 249, 253));
+        setMaximumSize(new java.awt.Dimension(1479, 716));
+        setMinimumSize(new java.awt.Dimension(1479, 716));
+        setResizable(false);
 
         sidebar.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -377,7 +404,8 @@ public class Ui extends javax.swing.JFrame {
         productsButton.setText("Productos");
 
         aboutButton.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
-        aboutButton.setText("Sobre");
+        aboutButton.setText("Sair");
+        aboutButton.addMouseListener(new LabelClickListener());
 
         javax.swing.GroupLayout sidebarLayout = new javax.swing.GroupLayout(sidebar);
         sidebar.setLayout(sidebarLayout);
@@ -439,7 +467,7 @@ public class Ui extends javax.swing.JFrame {
         jLabel4.setText("Total em capital");
 
         jLabel5.setFont(new java.awt.Font("Liberation Sans", 1, 22)); // NOI18N
-        jLabel5.setText("17.950,00 MT");
+        jLabel5.setText(controller.getTotalAmountProducts() + " MT");
 
         javax.swing.GroupLayout amountPanelLayout = new javax.swing.GroupLayout(amountPanel);
         amountPanel.setLayout(amountPanelLayout);
@@ -480,7 +508,7 @@ public class Ui extends javax.swing.JFrame {
         totalProductsPanel.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel2.setFont(new java.awt.Font("Liberation Sans", 1, 22)); // NOI18N
-        jLabel2.setText("17");
+        jLabel2.setText(controller.getTotalProducts() + "");
 
         jLabel3.setFont(new java.awt.Font("Liberation Sans", 1, 22)); // NOI18N
         jLabel3.setText("Total de Productos");
@@ -531,7 +559,11 @@ public class Ui extends javax.swing.JFrame {
         editBtn.setText("Editar Producto");
         editBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editBtnActionPerformed(evt);
+                try {
+                    editBtnActionPerformed(evt);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -615,25 +647,36 @@ public class Ui extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_deleteBtnActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void productNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productNameFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_productNameFieldActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void categoryProductFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryProductFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_categoryProductFieldActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void expirationProductFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expirationProductFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_expirationProductFieldActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void closeAddProductPageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeAddProductPageBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        addProductPage.dispose();
+    }//GEN-LAST:event_closeAddProductPageBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void addProductPageBtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_addProductPageBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        JDialog dialog = new JDialog();
+        if(controller.isValidForm(dialog, productNameField.getText(), priceProductField.getText(), categoryProductField.getText(), expirationProductField.getText())){
+            Product product = new Product(productNameField.getText(), categoryProductField.getText(), Float.parseFloat(priceProductField.getText()) , LocalDate.parse(expirationProductField.getText()), LocalDate.now());
+            if(controller.createProduct(dialog, product)){
+                JOptionPane.showMessageDialog(dialog, "Producto adicionado com sucesso!");
+                updateTable();
+                clearAddProductField();
+            }
+
+        }
+    }//GEN-LAST:event_addProductPageBtnActionPerformed
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
@@ -653,11 +696,49 @@ public class Ui extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+    private void updateProductPageWindowClosed(java.awt.event.WindowEvent evt) {
         // TODO add your handling code here:
-    }//GEN-LAST:event_editBtnActionPerformed
+        
+    }
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
+        // TODO add your handling code here:
+        JDialog dialog = new JDialog();
+        if(table.getSelectedRow() > -1){
+            updateProductPage.pack();
+            updateProductPage.setVisible(true);
+            updateProductPage.setLocationRelativeTo(this);
+
+            Product product = controller.getProductByID((int)table.getValueAt(table.getSelectedRow(), 0));
+            nameUpdateField.setText(product.getName());
+            priceUpdateField.setText(product.getPrice() + "");
+            categoryUpdateField.setText(product.getCategory());
+            expirationUpdateField.setText(product.getExpiration_date() + "");
+
+        } else{
+            JOptionPane.showMessageDialog(dialog, "Você deve escolher um producto antes de apagar.");
+        }
+    }
+
+    public class WindowEventHandler implements WindowListener {
+        public void windowClosing(WindowEvent e) {
+            try {
+                updateTable();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+
+        public void windowOpened(WindowEvent e) { }
+        public void windowClosed(WindowEvent e) { }
+        public void windowIconified(WindowEvent e) { }
+        public void windowDeiconified(WindowEvent e) { }
+        public void windowActivated(WindowEvent e) { }
+        public void windowDeactivated(WindowEvent e) { }
+    }
 
     /**
      * @param args the command line arguments
@@ -702,15 +783,17 @@ public class Ui extends javax.swing.JFrame {
     private javax.swing.JLabel aboutButton;
     private javax.swing.JToggleButton addBtn;
     private javax.swing.JDialog addProductPage;
+    private javax.swing.JButton addProductPageBtn;
     private javax.swing.JPanel addProductPanel;
     private javax.swing.JPanel amountPanel;
     private javax.swing.JPanel cardsInfoPanel;
+    private javax.swing.JTextField categoryProductField;
+    private javax.swing.JButton closeAddProductPageBtn;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JTextField expirationProductField;
+    private javax.swing.JButton updateBtn;
+    private javax.swing.JButton closeUpdatePageBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -726,16 +809,14 @@ public class Ui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField nameUpdateField;
+    private javax.swing.JTextField priceUpdateField;
+    private javax.swing.JTextField categoryUpdateField;
+    private javax.swing.JTextField expirationUpdateField;
     private javax.swing.JLabel logoName;
     private javax.swing.JPanel main;
+    private javax.swing.JTextField priceProductField;
+    private javax.swing.JTextField productNameField;
     private javax.swing.JLabel productsButton;
     private javax.swing.JLabel productsTitlePage;
     private javax.swing.JLabel productsTitlePage1;
@@ -745,8 +826,9 @@ public class Ui extends javax.swing.JFrame {
     private javax.swing.JPanel totalProductsPanel;
     private javax.swing.JDialog updateProductPage;
     private javax.swing.JPanel updateProductPanel;
-    private ProductController controller;
     // End of variables declaration//GEN-END:variables
+
+    private ProductController controller;
 
     public void updateTable() throws Exception {
         List<Product> products = controller.getAll();
@@ -759,7 +841,6 @@ public class Ui extends javax.swing.JFrame {
         for (int i = 0; i < data.size(); i++){
             dataArray[i] = data.get(i);
         }
-
         table.setModel(new javax.swing.table.DefaultTableModel(
                 dataArray,
                 new String [] {
@@ -770,5 +851,32 @@ public class Ui extends javax.swing.JFrame {
                 return false;
             }
         });
+        jLabel5.setText(controller.getTotalAmountProducts() + " MT");
+        jLabel2.setText(controller.getTotalProducts() + "");
+
+    }
+
+    public void clearAddProductField(){
+        productNameField.setText("");
+        priceProductField.setText("");
+        categoryProductField.setText("");
+        expirationProductField.setText("");
+    }
+
+    public void updateProduct() throws Exception {
+        JDialog dialog = new JDialog();
+        if(controller.isValidForm(dialog, nameUpdateField.getText(), priceUpdateField.getText(), categoryUpdateField.getText(), expirationUpdateField.getText())){
+            Product product = new Product((int)table.getValueAt(table.getSelectedRow(), 0) ,nameUpdateField.getText(), categoryUpdateField.getText(), Float.parseFloat(priceUpdateField.getText()) , LocalDate.parse(expirationUpdateField.getText()), LocalDate.now());
+            controller.updateProduct(product);
+                JOptionPane.showMessageDialog(dialog, "Producto atualizado com sucesso!");
+
+        }
+    }
+
+    public class LabelClickListener extends MouseAdapter {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            System.exit(0);
+        }
     }
 }

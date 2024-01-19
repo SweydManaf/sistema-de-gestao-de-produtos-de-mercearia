@@ -27,6 +27,9 @@ public class Product implements Serializable {
         this.created_at = created_at;
     }
 
+    public Product(String text, String text1, float v, String text2) {
+    }
+
 
     public int getId() {
         return id;

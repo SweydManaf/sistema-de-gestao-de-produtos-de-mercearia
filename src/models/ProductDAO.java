@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class ProductDAO {
     public List<Product> getAllProducts() throws Exception{
@@ -83,7 +84,7 @@ public class ProductDAO {
 
     public boolean isValidProduct(Product product) throws Exception{
         List<Product> products = getAllProducts();
-        Optional<Product> productFinded = products.stream().filter(p -> (p.getId() == product.getId())).findFirst();
+        Optional<Product> productFinded = products.stream().filter(p -> (p.getName().equalsIgnoreCase(product.getName()))).findFirst();
 
         return productFinded.isPresent();
     }

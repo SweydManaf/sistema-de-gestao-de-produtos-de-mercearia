@@ -9,7 +9,7 @@ import java.util.List;
 public class Console {
     public static void main(String[] args) throws Exception {
         ProductController controller = new ProductController();
-//        createProduct(controller);
+        createProduct(controller);
         getAllProducts(controller);
     }
 
