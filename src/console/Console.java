@@ -1,17 +1,15 @@
-package ui;
+package console;
 
 import controllers.ProductController;
 import entities.Product;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
-public class Main {
-    public static void main(String args[]) throws Exception {
+public class Console {
+    public static void main(String[] args) throws Exception {
         ProductController controller = new ProductController();
-        createProduct(controller);
+//        createProduct(controller);
         getAllProducts(controller);
     }
 

@@ -40,7 +40,7 @@ public class ProductDAO {
         return product.orElse(null);
     }
 
-    public void createProduct(Product product) throws SQLException, Exception {
+    public void createProduct(Product product) throws Exception {
         String query = "INSERT INTO Products (name, category, price, expiration_date, created_at) VALUES (?, ?, ?, ?, ?)";
         Connection conn = new DataBaseConnection().getConnection();
         PreparedStatement ps = conn.prepareStatement(query);
@@ -53,7 +53,7 @@ public class ProductDAO {
         conn.close();
     }
 
-    public void updateProduct(Product product) throws SQLException, Exception{
+    public void updateProduct(Product product) throws Exception{
         String query = "UPDATE Products set name = ?, category = ?, price = ?, expiration_date = ?, created_at = ? WHERE " + "id = " + product.getId();
 
         Connection conn = new DataBaseConnection().getConnection();

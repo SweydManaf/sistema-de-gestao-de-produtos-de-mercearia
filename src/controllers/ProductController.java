@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
 public class ProductController {
-    private ProductDAO productDAO;
+    private final ProductDAO productDAO;
 
     public ProductController(){
         productDAO = new ProductDAO();
@@ -36,8 +36,17 @@ public class ProductController {
         productDAO.updateProduct(product);
     }
 
-    public void deleteProduct(int product_id) throws Exception{
-        productDAO.deleteProduct(product_id);
+    public void deleteProduct(JDialog root, int product_id) throws Exception{
+        if(product_id > 0){
+            int response = JOptionPane.showConfirmDialog(root, "Tem certeza que deseja excluir este produto?");
+            if(response == JOptionPane.YES_OPTION){
+                productDAO.deleteProduct(product_id);
+                JOptionPane.showMessageDialog(root, "Produto eliminado com sucesso!");
+            }
+
+        } else{
+            JOptionPane.showConfirmDialog(root, "Impossivel apagar este produto.");
+        }
     }
 
     public Product getProductByID(int product_id) throws Exception{
